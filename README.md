@@ -133,3 +133,24 @@ Go to:
 CloudWatch → Log Groups → nodejs-app-logs
 
 🎉 You will see logs.
+
+
+⚠️ Real production best practice
+
+You should also rotate logs on EC2 using:
+
+✅ logrotate (Linux standard)
+
+Example:
+
+sudo nano /etc/logrotate.d/nodeapp
+/home/ec2-user/Node-js-cloudwatch/app.log {
+    daily
+    rotate 7
+    compress
+    missingok
+    notifempty
+    copytruncate
+}
+
+👉 This keeps only last 7 rotated files on server.
